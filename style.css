@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+body.home-page {
+    background-image: url('images/bg-main.jpg');
+  }
+  body.final-page {
+    background-image: url('images/bg-final.jpg');
+  }
+  
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 80px auto;
+  text-align: center;
+}
+.intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffe600;
+}
+.intro p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  margin-top: 50px;
+}
+.service-box {
+  width: 100%;
+  max-width: 300px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+}
+.service-box:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.service-box a {
+  text-decoration: none;
+  color: #ffe600;
+  font-size: 1.2rem;
+}
+
+/* ===== page-specific backgrounds ===== */
+body.home-page {
+    background-image: url('images/bg-main.jpg');
+  }
+  body.final-page {
+    background-image: url('images/bg-final.jpg');
+  }
+  
+body.home-page { background-image: url('images/bg-main.jpg'); }
+body.gpa-page  { background-image: url('images/bg-gpa.jpg'); }
+body.convert-page { background-image: url('images/bg-convert.jpg'); }
+body.final-page   { background-image: url('images/bg-final.jpg'); }
+
+/* ===== GPA table inputs ===== */
+#gpaPage table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#gpaPage table th,
+#gpaPage table td {
+  padding: 12px 8px;
+  text-align: center;
+}
+#gpaPage table input,
+#gpaPage table select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 6px;
+}
+#gpaPage table td button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #e74c3c;
+  color: white;
+  cursor: pointer;
+}
+#gpaPage table th {
+  background-color: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { margin: 40px 20px; padding: 20px; }
+  .intro h1 { font-size: 2rem; }
+  .services { grid-template-columns: 1fr; }
+}

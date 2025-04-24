@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تحويل الدرجة</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="convert-page">
+
+  <div class="container">
+    <div class="intro">
+      <h1>📊 تحويل الدرجة من 100 إلى تقدير</h1>
+      <p>أدخل درجتك لتحصل على التقدير الحرفي المناسب</p>
+    </div>
+
+    <input id="gradeInput" type="number" placeholder="مثلاً: 87"
+           style="padding:8px;font-size:1rem;border:none;border-radius:6px;width:60%;">
+    <button onclick="convertGrade()">تحويل</button>
+    <div id="result" style="margin-top:20px;font-size:1.2rem;color:#ffe600;"></div>
+  </div>
+
+  <script>
+    function convertGrade(){
+      const g = parseFloat(document.getElementById('gradeInput').value);
+      let res = '';
+      if (isNaN(g) || g<0||g>100) res = 'أدخل قيمة بين 0 و100';
+      else if (g>=90) res='A+'; else if (g>=85) res='A';
+      else if (g>=80) res='B+'; else if (g>=75) res='B';
+      else if (g>=70) res='C+'; else if (g>=65) res='C';
+      else if (g>=60) res='D+'; else if (g>=50) res='D'; else res='F';
+      document.getElementById('result').innerText = `تقديرك: ${res}`;
+    }
+  </script>
+
+</body>
+</html>

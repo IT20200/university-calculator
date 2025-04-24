@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>حاسبة النجاح في النهائي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="final-page">
+
+  <div class="container">
+    <div class="intro">
+      <h1>✅ حاسبة النجاح في الاختبار النهائي</h1>
+      <p>احسب الدرجة التي تحتاجها لضمان النجاح</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+      <input id="total" type="number" placeholder="الدرجة الكاملة (مثال: 100)"
+             style="width:60%;padding:8px;border:none;border-radius:6px;">
+      <input id="current" type="number" placeholder="درجتك الحالية"
+             style="width:60%;padding:8px;border:none;border-radius:6px;">
+      <input id="passPercent" type="number" placeholder="نسبة النجاح (مثال: 60)"
+             style="width:60%;padding:8px;border:none;border-radius:6px;">
+      <button onclick="calculateNeeded()">احسب</button>
+    </div>
+
+    <div id="result" style="margin-top:20px;font-size:1.2rem;color:#ffe600;"></div>
+  </div>
+
+  <script>
+    function calculateNeeded(){
+      const t = parseFloat(document.getElementById('total').value),
+            c = parseFloat(document.getElementById('current').value),
+            p = parseFloat(document.getElementById('passPercent').value);
+      if (isNaN(t)||isNaN(c)||isNaN(p)||t<=0) {
+        document.getElementById('result').innerText = 'أدخل بيانات صحيحة';
+        return;
+      }
+      const needed = p/100*t - c;
+      let msg = '';
+      if (needed <= 0) msg = 'مبروك! أنت ناجح بدون النهائي';
+      else if (needed > t) msg = 'لا يمكن النجاح حتى بالدرجة الكاملة';
+      else msg = `تحتاج ${needed.toFixed(2)} درجة للنجاح`;
+      document.getElementById('result').innerText = msg;
+    }
+  </script>
+
+</body>
+</html>

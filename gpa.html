@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>حاسبة المعدل التراكمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="gpaPage" class="gpa-page">
+
+  <div class="container">
+    <div class="intro">
+      <h1>🔢 حاسبة المعدل التراكمي</h1>
+      <p>أدخل بيانات كل مادة لحساب المعدل التراكمي العام</p>
+    </div>
+
+    <table id="coursesTable">
+      <tr>
+        <th>اسم المادة</th>
+        <th>التقدير</th>
+        <th>عدد الساعات</th>
+        <th>حذف</th>
+      </tr>
+    </table>
+
+    <div class="actions" style="margin-top:20px;">
+      <button onclick="addRow()">إضافة مادة</button>
+      <button onclick="calculateGPA()">احسب المعدل</button>
+    </div>
+
+    <div id="result" style="margin-top:20px;font-size:1.2rem;color:#ffe600;"></div>
+  </div>
+
+  <script>
+    const gradePoints = {"A+":5,"A":5,"B+":4.5,"B":4,"C+":3.5,"C":3,"D+":2.5,"D":2,"F":0};
+    function addRow() {
+      const table = document.getElementById('coursesTable');
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td><input type="text" placeholder="اسم المادة"></td>
+        <td><select>${Object.keys(gradePoints).map(g=>`<option value="${g}">${g}</option>`).join('')}</select></td>
+        <td><input type="number" min="1" placeholder="عدد الساعات"></td>
+        <td><button onclick="removeRow(this)">❌</button></td>`;
+    }
+    function removeRow(btn){ btn.closest('tr').remove(); }
+    function calculateGPA(){
+      let totalH=0, totalP=0;
+      document.querySelectorAll('#coursesTable tr').forEach((tr,i)=>{
+        if(i===0) return;
+        const inputs = tr.querySelectorAll('input, select');
+        const name = inputs[0].value.trim();
+        const grade = inputs[1].value;
+        const hrs = parseFloat(inputs[2].value);
+        if(!name || isNaN(hrs)) return;
+        totalH += hrs;
+        totalP += gradePoints[grade] * hrs;
+      });
+      const gpa = totalH ? (totalP / totalH).toFixed(2) : '--';
+      document.getElementById('result').innerText = `المعدل التراكمي: ${gpa}`;
+    }
+    addRow();
+  </script>
+
+</body>
+</html>
